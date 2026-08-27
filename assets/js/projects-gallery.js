@@ -109,12 +109,18 @@ if (SUPABASE_URL && !SUPABASE_URL.includes('SEU-PROJETO')) {
     fetch(`${SUPABASE_URL}/rest/v1/project_images?select=area_key,url,caption,sort_order&order=sort_order`, { headers }).then(r => r.ok ? r.json() : []),
   ]).then(([areas, images]) => {
     if (!Array.isArray(areas) || areas.length === 0) return;
-    PROJECTS = areas.map(a => ({
-      key: a.key,
-      tag: a.tag,
-      title: a.title,
-      images: images.filter(im => im.area_key === a.key).map(im => ({ src: im.url, caption: im.caption })),
-    }));
+     PROJECTS = areas.map(a => {
+      const dbImages = images.filter(im => im.area_key === a.key).map(im => ({ src: im.url, caption: im.caption }));
+      const fallback = FALLBACK_PROJECTS.find(f => f.key === a.key);
+      return {
+        key: a.key,
+        tag: a.tag,
+        title: a.title,
+        // se ainda não há fotos enviadas pelo painel para esta área,
+        // mantém as fotos de reserva já definidas aqui no código
+        images: dbImages.length ? dbImages : (fallback ? fallback.images : []),
+      };
+    });
     renderGrid();
   }).catch(() => {
     /* mantém a lista de reserva — a página continua a funcionar */
