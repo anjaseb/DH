@@ -1,0 +1,3 @@
+import {supabase} from './supabase.js';
+const f=document.querySelector('#signup'),m=document.querySelector('#msg');
+f.onsubmit=async e=>{e.preventDefault();if(f.password.value!==f.confirm.value){m.className='notice error';m.textContent='As palavras-passe não coincidem.';return}m.className='notice';m.textContent='A criar conta...';const {error}=await supabase.auth.signUp({email:f.email.value.trim(),password:f.password.value,options:{data:{full_name:f.name.value.trim(),phone:f.phone.value.trim(),department:f.department.value.trim()}}});if(error){m.className='notice error';m.textContent=error.message;return}m.className='notice ok';m.textContent='Conta criada. Se a confirmação por email estiver activa, confirme o email antes de entrar.'};
