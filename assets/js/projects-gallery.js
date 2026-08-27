@@ -2,7 +2,7 @@
 import { SUPABASE_URL, SUPABASE_KEY } from './supabase-config.js';
 
 const FALLBACK_PROJECTS = [
-  { key: 'construcao', tag: 'CONSTRUÇÃO & INSTALAÇÕES', title: 'Obras e instalações', images: [
+  { key: 'construcao', tag: 'INSTALAÇÕES', title: 'instalações', images: [
     { src: 'assets/img/projectos/rede.jpg', caption: 'Instalações eléctricas e de redes' },
     { src: 'assets/img/projectos/instalacao.jpg', caption: 'Instalação e manutenção de ar condicionado' },
   ]},
@@ -10,10 +10,10 @@ const FALLBACK_PROJECTS = [
     { src: 'assets/img/projectos/informatica.jpg', caption: 'Soluções de informática no terreno' },
   ]},
   { key: 'arquitectura', tag: 'ARQUITECTURA', title: 'Projectos civis', images: [
-    { src: 'assets/img/projectos/arq.jpg', caption: 'arquite' },
+    { src: 'assets/img/projectos/arq.jpg', caption: 'Arqutectua civil' },
   ] },
   { key: 'eventos', tag: 'EVENTOS', title: 'Cobertura de eventos', images: [
-    { src: 'assets/img/projectos/evento.jpg', caption: 'eventos' },
+    { src: 'assets/img/projectos/evento.jpg', caption: 'Eventos' },
   ] },
   { key: 'limpeza', tag: 'LIMPEZA', title: 'Manutenção de espaços', images: [
     { src: 'assets/img/projectos/limpeza.jpg', caption: 'Equipa de limpeza geral em acção' },
