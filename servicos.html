@@ -11,6 +11,111 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800\&family=Inter:wght@400;500;600;700;800\&family=JetBrains+Mono:wght@500;600;700\&display=swap">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 8px;
+        }
+
+        .service-card {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--white);
+            border-left: 3px solid transparent;
+            transition: border-color .15s, transform .15s, box-shadow .15s;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            border-left-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .service-card summary {
+            list-style: none;
+            cursor: pointer;
+            padding: 24px 22px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .service-card summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .service-card .num {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--brand);
+            font-weight: 700;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .service-card .num .toggle-icon {
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            color: var(--gold-dark);
+            transition: transform .2s;
+        }
+
+        .service-card[open] .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .service-card h2 {
+            font-size: 20px;
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+
+        .service-card > summary > p {
+            color: var(--ink-soft);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .service-more {
+            padding: 0 22px 24px;
+            border-top: 1px solid var(--line-soft);
+            margin-top: 4px;
+        }
+
+        .service-more p {
+            color: var(--ink-soft);
+            font-size: 14px;
+            margin: 14px 0 10px;
+        }
+
+        .service-more ul {
+            margin: 0;
+            padding-left: 18px;
+            display: grid;
+            gap: 6px;
+        }
+
+        .service-more li {
+            color: var(--ink);
+            font-size: 14px;
+        }
+
+        @media (max-width:900px) {
+            .service-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width:600px) {
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -30,79 +135,211 @@
         </div>
     </section>
     <section class="section">
-        <div class="wrap service-list" data-ct-list="servicos">
-            <article class="service" data-ct-item>
-                <div class="num">01</div>
-                <div>
-                    <h2 data-ct-field="titulo">Arquitectura civil</h2>
-                    <p data-ct-field="texto">Prestação de serviços de acordo com as necessidades do cliente, com
-                        organização e acompanhamento da equipa.</p>
-                </div>
-            </article>
-            <article class="service" data-ct-item>
-                <div class="num">02</div>
-                <div>
-                    <h2 data-ct-field="titulo">Desenvolvimento de software</h2>
-                    <p data-ct-field="texto">Prestação de serviços de acordo com as necessidades do cliente, com
-                        organização e acompanhamento da equipa.</p>
-                </div>
-            </article>
-            <article class="service" data-ct-item>
-                <div class="num">03</div>
-                <div>
-                    <h2 data-ct-field="titulo">Informática e instalações</h2>
-                    <p data-ct-field="texto">Prestação de serviços de acordo com as necessidades do cliente, com
-                        organização e acompanhamento da equipa.</p>
-                </div>
-            </article>
-            <article class="service" data-ct-item>
-                <div class="num">04</div>
-                <div>
-                    <h2 data-ct-field="titulo">Salão de beleza</h2>
-                    <p data-ct-field="texto">Prestação de serviços de acordo com as necessidades do cliente, com
-                        organização e acompanhamento da equipa.</p>
-                </div>
-            </article>
-            <article class="service" data-ct-item>
-                <div class="num">05</div>
-                <div>
-                    <h2 data-ct-field="titulo">Kónica, cópia e impressão</h2>
-                    <p data-ct-field="texto">Prestação de serviços de acordo com as necessidades do cliente, com
-                        organização e acompanhamento da equipa.</p>
-                </div>
-            </article>
-            <article class="service" data-ct-item>
-                <div class="num">06</div>
-                <div>
-                    <h2 data-ct-field="titulo">Serviço de limpeza e manutenção</h2>
-                    <p data-ct-field="texto">Prestação de serviços de acordo com as necessidades do cliente, com
-                        organização e acompanhamento da equipa.</p>
-                </div>
-            </article>
-            <article class="service" data-ct-item>
-                <div class="num">07</div>
-                <div>
-                    <h2 data-ct-field="titulo">Cobertura de eventos</h2>
-                    <p data-ct-field="texto">Prestação de serviços de acordo com as necessidades do cliente, com
-                        organização e acompanhamento da equipa.</p>
-                </div>
-            </article>
-            <article class="service" data-ct-item>
-                <div class="num">08</div>
-                <div>
-                    <h2 data-ct-field="titulo">Segurança institucional</h2>
-                    <p data-ct-field="texto">Prestação de serviços de acordo com as necessidades do cliente, com
-                        organização e acompanhamento da equipa.</p>
-                </div>
-            </article>
-            <article class="service" data-ct-item>
-                <div class="num">09</div>
-                <div>
-                    <h2 data-ct-field="titulo">Comércio geral</h2>
-                    <p data-ct-field="texto">Prestação de serviços de acordo com as necessidades do cliente, com
-                        organização e acompanhamento da equipa.</p>
-                </div>
-            </article>
+        <div class="wrap">
+            <div class="service-grid" data-ct-list="servicos">
+
+                <details class="service-card" data-ct-item>
+                    <summary>
+                        <div class="num"><span>01</span><span class="toggle-icon">+</span></div>
+                        <h2 data-ct-field="titulo">Instalação de câmeras de vigilância</h2>
+                        <p data-ct-field="texto">Montagem e configuração de sistemas de videovigilância (CCTV) para
+                            casas, lojas e empresas.</p>
+                    </summary>
+                    <div class="service-more">
+                        <p>O que fazemos exactamente:</p>
+                        <ul>
+                            <li>Avaliação do espaço e definição dos melhores pontos de instalação</li>
+                            <li>Montagem de câmeras, cabos e gravador (DVR/NVR)</li>
+                            <li>Configuração para visualização remota pelo telemóvel</li>
+                            <li>Manutenção e assistência técnica após instalação</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="service-card" data-ct-item>
+                    <summary>
+                        <div class="num"><span>02</span><span class="toggle-icon">+</span></div>
+                        <h2 data-ct-field="titulo">Instalação de antenas</h2>
+                        <p data-ct-field="texto">Montagem e afinação de antenas de televisão, satélite e internet.
+                        </p>
+                    </summary>
+                    <div class="service-more">
+                        <p>O que fazemos exactamente:</p>
+                        <ul>
+                            <li>Instalação de antenas de TV e parabólicas</li>
+                            <li>Apontamento e afinação de sinal</li>
+                            <li>Passagem de cabos e organização da instalação</li>
+                            <li>Resolução de problemas de fraca recepção de sinal</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="service-card" data-ct-item>
+                    <summary>
+                        <div class="num"><span>03</span><span class="toggle-icon">+</span></div>
+                        <h2 data-ct-field="titulo">Manutenção e montagem de ar condicionado</h2>
+                        <p data-ct-field="texto">Instalação de AC novo e manutenção de aparelhos já existentes.</p>
+                    </summary>
+                    <div class="service-more">
+                        <p>O que fazemos exactamente:</p>
+                        <ul>
+                            <li>Montagem de aparelhos de ar condicionado (split e outros modelos)</li>
+                            <li>Limpeza e manutenção periódica</li>
+                            <li>Recarga de gás e reparação de avarias</li>
+                            <li>Manutenção para casas, escritórios e lojas</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="service-card" data-ct-item>
+                    <summary>
+                        <div class="num"><span>04</span><span class="toggle-icon">+</span></div>
+                        <h2 data-ct-field="titulo">Desenvolvimento de sistemas informáticos</h2>
+                        <p data-ct-field="texto">Criação de sistemas e software à medida para empresas, lojas e
+                            particulares.</p>
+                    </summary>
+                    <div class="service-more">
+                        <p>O que fazemos exactamente:</p>
+                        <ul>
+                            <li>Sistemas de gestão para empresas e lojas (vendas, stock, presenças, etc.)</li>
+                            <li>Sites e páginas para negócios</li>
+                            <li>Sistemas personalizados conforme a necessidade do cliente</li>
+                            <li>Suporte e actualizações após a entrega</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="service-card" data-ct-item>
+                    <summary>
+                        <div class="num"><span>05</span><span class="toggle-icon">+</span></div>
+                        <h2 data-ct-field="titulo">Arquitectura civil</h2>
+                        <p data-ct-field="texto">Desenho de plantas e projectos de arquitectura civil.</p>
+                    </summary>
+                    <div class="service-more">
+                        <p>O que fazemos exactamente:</p>
+                        <ul>
+                            <li>Desenho de plantas de casas, lojas e outros espaços</li>
+                            <li>Projectos de arquitectura conforme o terreno e o pedido do cliente</li>
+                            <li>Ajustes e revisões da planta antes da versão final</li>
+                        </ul>
+                        <p style="margin-top:12px">Nota: fazemos o projecto/planta — não executamos a obra.</p>
+                    </div>
+                </details>
+
+                <details class="service-card" data-ct-item>
+                    <summary>
+                        <div class="num"><span>06</span><span class="toggle-icon">+</span></div>
+                        <h2 data-ct-field="titulo">Acompanhamento de obras</h2>
+                        <p data-ct-field="texto">Fiscalização e acompanhamento técnico de obras em curso.</p>
+                    </summary>
+                    <div class="service-more">
+                        <p>O que fazemos exactamente:</p>
+                        <ul>
+                            <li>Visitas e fiscalização do andamento da obra</li>
+                            <li>Verificação se a obra segue o projecto e a planta aprovada</li>
+                            <li>Relatórios de acompanhamento para o cliente</li>
+                        </ul>
+                        <p style="margin-top:12px">Nota: acompanhamos e fiscalizamos — não executamos a construção.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="service-card" data-ct-item>
+                    <summary>
+                        <div class="num"><span>07</span><span class="toggle-icon">+</span></div>
+                        <h2 data-ct-field="titulo">Segurança</h2>
+                        <p data-ct-field="texto">Serviços de segurança institucional e apoio à protecção de
+                            instalações e eventos.</p>
+                    </summary>
+                    <div class="service-more">
+                        <p>O que fazemos exactamente:</p>
+                        <ul>
+                            <li>Segurança institucional para empresas e instituições</li>
+                            <li>Segurança de apoio em eventos</li>
+                            <li>Vigilância e controlo de acessos</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="service-card" data-ct-item>
+                    <summary>
+                        <div class="num"><span>08</span><span class="toggle-icon">+</span></div>
+                        <h2 data-ct-field="titulo">Limpeza</h2>
+                        <p data-ct-field="texto">Limpeza residencial e empresarial.</p>
+                    </summary>
+                    <div class="service-more">
+                        <p>O que fazemos exactamente:</p>
+                        <ul>
+                            <li>Limpeza de casas e residências</li>
+                            <li>Limpeza de escritórios, lojas e espaços comerciais</li>
+                            <li>Limpeza pontual ou com regularidade combinada com o cliente</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="service-card" data-ct-item>
+                    <summary>
+                        <div class="num"><span>09</span><span class="toggle-icon">+</span></div>
+                        <h2 data-ct-field="titulo">Gráfica</h2>
+                        <p data-ct-field="texto">Kónica, cópias, impressões e serviços de gráfica em geral.</p>
+                    </summary>
+                    <div class="service-more">
+                        <p>O que fazemos exactamente:</p>
+                        <ul>
+                            <li>Cópias e impressões</li>
+                            <li>Plastificação e encadernação de documentos</li>
+                            <li>Impressão de convites, cartões e material de divulgação</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="service-card" data-ct-item>
+                    <summary>
+                        <div class="num"><span>10</span><span class="toggle-icon">+</span></div>
+                        <h2 data-ct-field="titulo">Cobertura de eventos</h2>
+                        <p data-ct-field="texto">Apoio operacional e cobertura de eventos.</p>
+                    </summary>
+                    <div class="service-more">
+                        <p>O que fazemos exactamente:</p>
+                        <ul>
+                            <li>Cobertura fotográfica e de vídeo de eventos</li>
+                            <li>Apoio operacional durante o evento</li>
+                            <li>Eventos empresariais, sociais e institucionais</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="service-card" data-ct-item>
+                    <summary>
+                        <div class="num"><span>11</span><span class="toggle-icon">+</span></div>
+                        <h2 data-ct-field="titulo">Salão de beleza</h2>
+                        <p data-ct-field="texto">Serviços de beleza e cuidados pessoais.</p>
+                    </summary>
+                    <div class="service-more">
+                        <p>O que fazemos exactamente:</p>
+                        <ul>
+                            <li>Serviços de cabeleireiro e estética</li>
+                            <li>Atendimento marcado conforme o serviço pretendido</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="service-card" data-ct-item>
+                    <summary>
+                        <div class="num"><span>12</span><span class="toggle-icon">+</span></div>
+                        <h2 data-ct-field="titulo">Comércio geral</h2>
+                        <p data-ct-field="texto">Compra, venda e fornecimento de produtos diversos.</p>
+                    </summary>
+                    <div class="service-more">
+                        <p>O que fazemos exactamente:</p>
+                        <ul>
+                            <li>Fornecimento de produtos e materiais diversos</li>
+                            <li>Encomendas conforme a necessidade do cliente</li>
+                        </ul>
+                    </div>
+                </details>
+
+            </div>
         </div>
     </section>
     <footer>
