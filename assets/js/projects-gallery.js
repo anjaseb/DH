@@ -1,30 +1,25 @@
-// ============================================================
-// Galeria de projectos — DOMINGOS HUMBA
-//
-// As áreas e fotografias vêm da base de dados (Supabase), geridas
-// a partir do painel de administração. Pedido leve (fetch simples,
-// sem SDK) para manter esta página rápida. Se a rede/Supabase
-// falhar, usa-se a lista abaixo como reserva, para a página nunca
-// ficar vazia.
-// ============================================================
 
 import { SUPABASE_URL, SUPABASE_KEY } from './supabase-config.js';
 
 const FALLBACK_PROJECTS = [
   { key: 'construcao', tag: 'CONSTRUÇÃO & INSTALAÇÕES', title: 'Obras e instalações', images: [
-    { src: 'assets/img/projectos/construcao-1.jpg', caption: 'Instalações eléctricas e de redes' },
-    { src: 'assets/img/projectos/construcao-2.jpg', caption: 'Instalação e manutenção de ar condicionado' },
+    { src: 'assets/img/projectos/rede.jpg', caption: 'Instalações eléctricas e de redes' },
+    { src: 'assets/img/projectos/instalacao.jpg', caption: 'Instalação e manutenção de ar condicionado' },
   ]},
   { key: 'tecnologia', tag: 'TECNOLOGIA', title: 'Software e sistemas', images: [
-    { src: 'assets/img/projectos/tecnologia-1.jpg', caption: 'Soluções de informática no terreno' },
+    { src: 'assets/img/projectos/informatica.jpg', caption: 'Soluções de informática no terreno' },
   ]},
-  { key: 'arquitectura', tag: 'ARQUITECTURA', title: 'Projectos civis', images: [] },
-  { key: 'eventos', tag: 'EVENTOS', title: 'Cobertura de eventos', images: [] },
+  { key: 'arquitectura', tag: 'ARQUITECTURA', title: 'Projectos civis', images: [
+    { src: 'assets/img/projectos/arq.jpg', caption: 'arquite' },
+  ] },
+  { key: 'eventos', tag: 'EVENTOS', title: 'Cobertura de eventos', images: [
+    { src: 'assets/img/projectos/evento.jpg', caption: 'eventos' },
+  ] },
   { key: 'limpeza', tag: 'LIMPEZA', title: 'Manutenção de espaços', images: [
-    { src: 'assets/img/projectos/limpeza-1.jpg', caption: 'Equipa de limpeza geral em acção' },
+    { src: 'assets/img/projectos/limpeza.jpg', caption: 'Equipa de limpeza geral em acção' },
   ]},
   { key: 'seguranca', tag: 'SEGURANÇA', title: 'Segurança institucional', images: [
-    { src: 'assets/img/projectos/seguranca-1.jpg', caption: 'Equipa de segurança institucional' },
+    { src: 'assets/img/projectos/seguranca.jpg', caption: 'Equipa de segurança institucional' },
   ]},
 ];
 
