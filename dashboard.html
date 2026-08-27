@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-AO">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Portal | Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800\&family=Inter:wght@400;500;600;700;800\&family=JetBrains+Mono:wght@500;600;700\&display=swap">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <main class="portal">
+        <div class="wrap portal-layout">
+            <aside class="sidebar"><img src="assets/img/logo.png" width="480" height="348" alt="Domingos Humba"><a
+                    href="dashboard.html">Dashboard</a><a href="funcionarios.html">Funcionários / Chat</a><a
+                    id="adminLink" class="hidden" href="admin.html">Administração</a><a id="attLink" class="hidden"
+                    href="presencas.html">Presenças</a><a href="index.html">Site público</a><a href="#"
+                    id="logout">Terminar sessão</a></aside>
+            <section class="panel">
+                <div class="eyebrow">PORTAL INTERNO</div>
+                <h1>Olá, <span id="name">Funcionário</span>.</h1>
+                <p>Departamento: <b id="department">—</b></p>
+                <div class="dashboard-cards">
+                    <div class="mini">
+                        <h3>Hoje</h3>
+                        <p id="status">A carregar...</p><button class="btn" id="present">✓ Marcar presença</button>
+                    </div>
+                    <div class="mini">
+                        <h3>Falta</h3>
+                        <p>Se não puder comparecer, informe o motivo.</p><button class="btn alt" id="absent">Informar
+                            falta</button>
+                    </div>
+                    <div class="mini">
+                        <h3>Comunicação</h3>
+                        <p>Converse directamente com outro funcionário.</p><a class="btn" href="funcionarios.html">Abrir
+                            chat</a>
+                    </div>
+                </div>
+                <div class="formbox" style="margin-top:18px">
+                    <h2>Registo de hoje</h2>
+                    <p>Estado: <b id="todayStatus">—</b></p>
+                    <p>Motivo: <span id="reason">—</span></p>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script type="module" src="assets/js/dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="pt-AO">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Portal | Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800\&family=Inter:wght@400;500;600;700;800\&family=JetBrains+Mono:wght@500;600;700\&display=swap">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <main class="portal">
+        <div class="wrap" style="max-width:850px">
+            <div class="formbox"><a href="funcionarios.html">← Funcionários</a>
+                <h1>Conversa com <span id="title">Funcionário</span></h1>
+                <div id="msgs" class="messages"></div>
+                <form id="f" class="chat-form"><input name="text" placeholder="Escreva uma mensagem..." maxlength="5000"
+                        autocomplete="off" required><button class="btn">Enviar</button></form>
+                <p id="err"></p>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="assets/js/chat.js"></script>
+</body>
+
+</html>

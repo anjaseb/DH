@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-AO">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Portal | Criar conta</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800\&family=Inter:wght@400;500;600;700;800\&family=JetBrains+Mono:wght@500;600;700\&display=swap">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <main class="portal">
+        <div class="wrap" style="max-width:650px">
+            <div class="formbox"><img src="assets/img/logo.png" width="480" height="348"
+                    style="width:100%;max-width:360px" alt="Domingos Humba">
+                <h1>Criar conta de funcionário</h1>
+                <p>Cada funcionário deve ter a sua própria conta.</p>
+                <form id="signup"><label>Nome completo<input name="name" required></label><label>Email<input
+                            name="email" type="email" required></label><label>Telefone<input
+                            name="phone"></label><label>Departamento / área<input name="department"
+                            placeholder="Ex.: Administração, Informática, Construção"></label><label>Palavra-passe<input
+                            name="password" type="password" minlength="6" required></label><label>Confirmar
+                        palavra-passe<input name="confirm" type="password" minlength="6" required></label><button
+                        class="btn">Criar conta</button>
+                    <p id="msg"></p>
+                </form><a href="login.html">← Voltar ao login</a>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="assets/js/cadastro.js"></script>
+</body>
+
+</html>

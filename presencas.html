@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-AO">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Portal | Presenças</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800\&family=Inter:wght@400;500;600;700;800\&family=JetBrains+Mono:wght@500;600;700\&display=swap">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <main class="portal">
+        <div class="wrap">
+            <div class="formbox"><a href="dashboard.html">← Dashboard</a>
+                <div class="eyebrow" style="margin-top:20px">ADMINISTRAÇÃO</div>
+                <h1>Presenças e faltas</h1><input id="date" type="date">
+                <div class="table-wrap" style="margin-top:18px">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Funcionário</th>
+                                <th>Departamento</th>
+                                <th>Estado</th>
+                                <th>Motivo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rows"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="assets/js/presencas.js"></script>
+</body>
+
+</html>
