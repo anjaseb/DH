@@ -85,7 +85,7 @@
     </footer>
     <script src="assets/js/main.js"></script>
     <script type="module" src="assets/js/content.js"></script>
-    <script>document.querySelector('#quote').onsubmit = e => {e.preventDefault(); let f = new FormData(e.target); const email = document.querySelector('[data-ct-mail="contactos.email"]')?.href.replace('mailto:', '') || 'domingosmanuelhumba2021@gmail.com'; location.href = 'mailto:' + email + '?subject=' + encodeURIComponent('Pedido de orçamento - ' + f.get('service')) + '&body=' + encodeURIComponent('Nome: ' + f.get('name') + '\nTelefone: ' + f.get('phone') + '\nServiço: ' + f.get('service') + '\n\n' + f.get('message'))}</script>
+    <script src="assets/js/contactos.js"></script>
 </body>
 
 </html>
