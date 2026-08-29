@@ -10,6 +10,22 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800\&family=Inter:wght@400;500;600;700;800\&family=JetBrains+Mono:wght@500;600;700\&display=swap">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .profile-photo-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 14px;
+        }
+
+        .profile-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--line);
+        }
+    </style>
 </head>
 
 <body>
@@ -22,6 +38,14 @@
                     id="logout">Terminar sessão</a></aside>
             <section class="panel">
                 <div class="eyebrow">PORTAL INTERNO</div>
+                <div class="profile-photo-row">
+                    <img id="avatar" class="profile-avatar" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23161616'/%3E%3Ccircle cx='50' cy='38' r='18' fill='%23555'/%3E%3Cellipse cx='50' cy='88' rx='32' ry='24' fill='%23555'/%3E%3C/svg%3E" alt="A tua foto de perfil">
+                    <div>
+                        <label class="btn alt" for="avatarInput" style="cursor:pointer;display:inline-block">Trocar foto</label>
+                        <input type="file" id="avatarInput" accept="image/png,image/jpeg,image/webp" class="hidden">
+                        <p id="avatarMsg" style="margin-top:6px"></p>
+                    </div>
+                </div>
                 <h1>Olá, <span id="name">Funcionário</span>.</h1>
                 <p>Departamento: <b id="department">—</b></p>
                 <div class="dashboard-cards">
