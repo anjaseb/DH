@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt-AO">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Portal | Administração</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800\&family=Inter:wght@400;500;600;700;800\&family=JetBrains+Mono:wght@500;600;700\&display=swap">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .admin-tabs {
+            display: flex;
+            gap: 8px;
+            margin: 16px 0 20px;
+        }
+
+        .admin-tabs button {
+            padding: 8px 16px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--white);
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+        }
+
+        .admin-tabs button.active {
+            background: var(--brand);
+            color: var(--white);
+            border-color: var(--brand);
+        }
+
+        .admin-view {
+            display: none;
+        }
+
+        .admin-view.active {
+            display: block;
+        }
+
+        table input, table select {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .area-block {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 18px;
+            margin-bottom: 18px;
+        }
+
+        .area-block h3 {
+            margin: 0 0 4px;
+        }
+
+        .area-block .tag {
+            color: var(--brand);
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 14px 0;
+        }
+
+        .photo-item {
+            position: relative;
+        }
+
+        .photo-item img {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .photo-item button {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(0, 0, 0, .7);
+            color: #fff;
+            border: 0;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            cursor: pointer;
+            font-size: 12px;
+            line-height: 1;
+        }
+
+        .upload-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .upload-row input[type="text"] {
+            flex: 1;
+            min-width: 160px;
+            padding: 8px 10px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="portal">
+        <div class="wrap portal-layout">
+            <aside class="sidebar"><img src="assets/img/logo.png" width="480" height="348" alt="Domingos Humba"><a
+                    href="dashboard.html">Dashboard</a><a href="funcionarios.html">Funcionários / Chat</a><a
+                    href="admin.html">Administração</a><a href="presencas.html">Presenças</a><a
+                    href="index.html">Site público</a><a href="#" id="logout">Terminar sessão</a></aside>
+            <section class="panel">
+                <div class="eyebrow">ADMINISTRAÇÃO</div>
+                <h1>Gestão do site</h1>
+                <p id="msg"></p>
+
+                <div class="admin-tabs">
+                    <button type="button" data-tab="funcionarios" class="active">Funcionários</button>
+                    <button type="button" data-tab="fotos">Fotos dos trabalhos</button>
+                </div>
+
+                <div id="tab-funcionarios" class="admin-view active">
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Departamento</th>
+                                    <th>Perfil</th>
+                                    <th>Estado</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="rows"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="tab-fotos" class="admin-view">
+                    <p>Escolhe uma área e envia as fotos que devem aparecer na página de projectos do site.</p>
+                    <div id="areas"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script type="module" src="assets/js/admin.js"></script>
+</body>
+
+</html>
