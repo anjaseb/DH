@@ -12,6 +12,51 @@
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800\&family=Inter:wght@400;500;600;700;800\&family=JetBrains+Mono:wght@500;600;700\&display=swap">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .concurso-cta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .concurso-cta>div:first-child {
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .concurso-count {
+            background: var(--white);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            padding: 26px 34px;
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .concurso-count strong {
+            display: block;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 46px;
+            font-weight: 800;
+            color: var(--brand);
+            line-height: 1;
+        }
+
+        .concurso-count span {
+            font-size: 13px;
+            color: var(--ink-soft);
+        }
+
+        @media(max-width:600px) {
+            .concurso-cta {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -84,6 +129,21 @@
             </div>
         </div>
     </section>
+    <section class="section pale">
+        <div class="wrap concurso-cta">
+            <div>
+                <div>CONCURSO PÚBLICO</div>
+                <h2>Estamos a recrutar. Candidate-se a uma vaga.</h2>
+                <p class="lead">Consulte as vagas abertas na Domingos Humba e envie o seu CV, cópia do BI e
+                    fotografia online, em poucos minutos.</p>
+                <div class="actions"><a class="btn" href="concurso.html">Ver vagas e candidatar-me</a></div>
+            </div>
+            <div class="concurso-count">
+                <strong id="candidatos-count">—</strong>
+                <span>candidatos já inscritos</span>
+            </div>
+        </div>
+    </section>
     <section class="cta">
         <div class="wrap">
             <div>VAMOS TRABALHAR JUNTOS</div>
@@ -120,6 +180,7 @@
     </footer>
     <script src="assets/js/main.js"></script>
     <script type="module" src="assets/js/content.js"></script>
+    <script type="module" src="assets/js/candidatos-count.js"></script>
 </body>
 
 </html>

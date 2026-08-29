@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Portal | Administração</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
@@ -114,6 +115,130 @@
             border: 1px solid var(--line);
             border-radius: 6px;
         }
+
+        .vagas-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .vaga-row {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 16px;
+            margin-bottom: 14px;
+        }
+
+        .vaga-row-head {
+            display: grid;
+            grid-template-columns: 1fr 160px auto;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .vaga-row-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .vaga-row input,
+        .vaga-row select,
+        .vaga-row textarea {
+            padding: 8px 10px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            font-size: 13px;
+            width: 100%;
+            margin-bottom: 8px;
+        }
+
+        .cand-filter {
+            margin-bottom: 14px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .cand-filter select {
+            max-width: 320px;
+            padding: 8px 10px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+        }
+
+        .wa-config {
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            flex-wrap: wrap;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            margin: 14px 0;
+        }
+
+        .wa-config label {
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .wa-config input {
+            padding: 8px 10px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            width: 100%;
+            margin-top: 6px;
+        }
+
+        .cand-card {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 14px 16px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .cand-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .cand-photo {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--panel);
+        }
+
+        .cand-info small {
+            display: block;
+            color: var(--ink-soft);
+        }
+
+        .cand-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .cand-actions select {
+            padding: 7px 9px;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            font-size: 13px;
+        }
     </style>
 </head>
 
@@ -132,6 +257,7 @@
                 <div class="admin-tabs">
                     <button type="button" data-tab="funcionarios" class="active">Funcionários</button>
                     <button type="button" data-tab="fotos">Fotos dos trabalhos</button>
+                    <button type="button" data-tab="concurso">Concurso público</button>
                 </div>
 
                 <div id="tab-funcionarios" class="admin-view active">
@@ -155,6 +281,36 @@
                 <div id="tab-fotos" class="admin-view">
                     <p>Escolhe uma área e envia as fotos que devem aparecer na página de projectos do site.</p>
                     <div id="areas"></div>
+                </div>
+
+                <div id="tab-concurso" class="admin-view">
+                    <h2 style="margin:0 0 6px">Vagas</h2>
+                    <p>Estas vagas aparecem na página pública "Concurso Público" quando estão marcadas como
+                        "Aberta".</p>
+                    <div class="vagas-toolbar">
+                        <span></span>
+                        <button type="button" class="btn" id="new-vaga">+ Nova vaga</button>
+                    </div>
+                    <div id="vagas-list"></div>
+
+                    <h2 style="margin:34px 0 6px">Candidaturas recebidas</h2>
+                    <p>Descarregue o CV e a cópia do BI, e actualize o estado de cada candidatura.</p>
+
+                    <div class="wa-config">
+                        <label style="margin:0">Nº de WhatsApp do gerente/presidente (com indicativo, ex: 244923456789)
+                            <input type="text" id="wa-number" placeholder="244923456789">
+                        </label>
+                        <button type="button" class="btn alt" id="wa-save">Guardar número</button>
+                    </div>
+
+                    <div class="cand-filter">
+                        <select id="cand-vaga-filter">
+                            <option value="">Todas as vagas</option>
+                        </select>
+                        <button type="button" class="btn" id="wa-send-all">Enviar todas por WhatsApp</button>
+                    </div>
+                    <p class="notice hidden" id="wa-msg"></p>
+                    <div id="cand-list"></div>
                 </div>
             </section>
         </div>

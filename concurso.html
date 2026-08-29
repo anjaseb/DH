@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="pt-AO">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Concurso público — vagas disponíveis na Domingos Humba. Candidate-se online.">
+    <title>Concurso Público | Domingos Humba</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800\&family=Inter:wght@400;500;600;700;800\&family=JetBrains+Mono:wght@500;600;700\&display=swap">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .vagas-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 22px;
+        }
+
+        .vaga-card {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--white);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-left: 3px solid transparent;
+            transition: border-color .15s, transform .15s, box-shadow .15s;
+        }
+
+        .vaga-card:hover {
+            border-left-color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .vaga-card .tag {
+            color: var(--brand);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+
+        .vaga-card h3 {
+            margin: 0;
+        }
+
+        .vaga-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            font-size: 13px;
+            color: var(--ink-soft);
+        }
+
+        .vaga-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .vaga-card p {
+            color: var(--ink-soft);
+            font-size: 14px;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .vaga-card details {
+            font-size: 13.5px;
+        }
+
+        .vaga-card details summary {
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--brand);
+            list-style: none;
+        }
+
+        .vaga-card details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .vaga-card details p {
+            margin-top: 8px;
+            white-space: pre-line;
+        }
+
+        .vaga-card .btn {
+            margin-top: auto;
+            align-self: flex-start;
+        }
+
+        .empty-state {
+            border: 1px dashed var(--line);
+            border-radius: var(--radius);
+            padding: 36px;
+            text-align: center;
+            color: var(--ink-soft);
+            margin-top: 22px;
+        }
+
+        .selected-vaga {
+            background: var(--gold-tint);
+            color: #5c4009;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 4px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .file-hint {
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+            color: var(--ink-soft);
+            font-size: 12px;
+            display: block;
+            margin-top: 2px;
+        }
+
+        @media(max-width:700px) {
+            .vagas-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="wrap nav"><a class="brand" href="index.html"><img src="assets/img/logo.png" width="480" height="348"
+                    alt="Domingos Humba - Comércio Geral e Prestação de Serviço LDA"></a><button class="menu">☰</button>
+            <nav class="navlinks"><a href="index.html">Início</a><a href="sobre.html">Sobre nós</a><a
+                    href="servicos.html">Serviços</a><a href="projectos.html">Projectos</a><a
+                    href="concurso.html">Concurso Público</a><a href="contactos.html">Contactos</a><a
+                    href="login.html">Portal</a></nav>
+        </div>
+    </header>
+
+    <section class="pagehead">
+        <div class="wrap">
+            <div>OPORTUNIDADES DE EMPREGO</div>
+            <h1>Concurso público — vagas disponíveis.</h1>
+            <p>Consulte as vagas abertas na Domingos Humba e candidate-se online, de forma simples e rápida.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="wrap">
+            <h2>Vagas abertas</h2>
+            <p class="lead" id="vagas-msg">A carregar vagas...</p>
+            <div class="vagas-grid" id="vagas-grid"></div>
+        </div>
+    </section>
+
+    <section class="section pale" id="candidatura">
+        <div class="wrap">
+            <h2>Candidatar-me</h2>
+            <p class="lead">Escolha a vaga pretendida e preencha os seus dados. O nome completo, o CV, a cópia do BI e
+                a fotografia são obrigatórios.</p>
+            <form class="formbox" id="candidatura-form" style="max-width:640px;margin:0 auto">
+                <div class="selected-vaga hidden" id="selected-vaga-box"></div>
+                <label>Vaga pretendida
+                    <select name="vaga_id" id="vaga-select" required>
+                        <option value="">— A carregar vagas —</option>
+                    </select>
+                </label>
+                <label>Nome completo<input name="full_name" required placeholder="Nome completo, como no BI"></label>
+                <label>Telefone<input name="phone" required placeholder="9XX XXX XXX"></label>
+                <label>Email (opcional)<input name="email" type="email" placeholder="nome@email.com"></label>
+                <label>Curriculum Vitae (CV)<span class="file-hint">PDF ou Word — até 8MB</span>
+                    <input name="cv" type="file" accept=".pdf,.doc,.docx" required></label>
+                <label>Cópia do Bilhete de Identidade<span class="file-hint">PDF, JPG ou PNG — até 5MB</span>
+                    <input name="bi" type="file" accept=".pdf,image/jpeg,image/png" required></label>
+                <label>Fotografia<span class="file-hint">JPG ou PNG — até 5MB</span>
+                    <input name="photo" type="file" accept="image/jpeg,image/png" required></label>
+                <button class="btn" type="submit">Submeter candidatura</button>
+                <p class="notice hidden" id="cand-msg"></p>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="wrap foot">
+            <div><img src="assets/img/logo.png" width="480" height="348" alt="Domingos Humba">
+                <p>Comércio geral e prestação de serviço LDA.</p>
+            </div>
+            <div>
+                <h3>Empresa</h3><a href="sobre.html">Sobre nós</a><a href="servicos.html">Serviços</a><a
+                    href="projectos.html">Projectos</a><a href="concurso.html">Concurso Público</a>
+            </div>
+            <div>
+                <h3>Contactos</h3><a href="tel:+244932221733" data-ct="contactos.telefone"
+                    data-ct-tel="contactos.telefone">+244 932 221 733</a>
+
+                <a href="tel:+244931052964" data-ct="contactos.telefone" data-ct-tel="contactos.telefone">+244 931 052
+                    964</a>
+
+                <a href="tel:+244931580232" data-ct="contactos.telefone" data-ct-tel="contactos.telefone">+244 931 580
+                    232</a>
+
+                <a href="mailto:domingosmanuelhumba2021@gmail.com" data-ct="contactos.email"
+                    data-ct-mail="contactos.email">domingosmanuelhumba2021@gmail.com</a>
+
+                <a href="https://wa.me/244932221733?text=Olá%20Domingos%20Humba,%20gostaria%20de%20mais%20informações."
+                    target="_blank" rel="noopener noreferrer" data-ct-wa="contactos.whatsapp_numero"><i
+                        class="fab fa-whatsapp"></i></a>
+
+                <a href="https://web.facebook.com/61593819513432/" target="_blank" rel="noopener noreferrer"
+                    data-ct="contactos.facebook" data-ct-facebook="contactos.facebook"><i
+                        class="fab fa-facebook"></i></a>
+
+                <span data-ct="contactos.endereco">Bairro 4 e Meio, por trás da Igreja IESA</span>
+            </div>
+        </div>
+        <div class="copy">© 2026 Domingos Humba. Todos os direitos reservados.</div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/content.js"></script>
+    <script type="module" src="assets/js/concurso.js"></script>
+</body>
+
+</html>
