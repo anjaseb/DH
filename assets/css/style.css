@@ -72,7 +72,8 @@ p {
 
 .wrap {
   width: min(1180px, 92%);
-  margin: auto
+  margin: auto;
+
 }
 
 :focus-visible {
@@ -142,7 +143,8 @@ header {
 .brand img {
   height: 60px;
   width: auto;
-  display: block
+  display: block;
+  border-radius:80px
 }
 
 .navlinks {
@@ -293,7 +295,7 @@ header {
   font-weight: 600;
   letter-spacing: .03em;
   color: var(--brand-dark);
-  background: var(--brand-tint);
+  background: none;
   border: 1px solid #c8dee1;
   padding: 7px 12px;
   border-radius: 999px;
@@ -889,7 +891,7 @@ footer {
   height: 64px;
   background: var(--white);
   padding: 8px;
-  border-radius: 6px
+  border-radius: 60px
 }
 
 .foot h3 {
