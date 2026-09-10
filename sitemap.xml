@@ -2,5 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://empresa-dh.vercel.app/</loc>
+<loc>https://empresa-dh.vercel.app/sobre/</loc>
+<loc>https://empresa-dh.vercel.app/concurso/</loc>
+<loc>https://empresa-dh.vercel.app/servicos/</loc>
+<loc>https://empresa-dh.vercel.app/contactos</loc>
+<loc>https://empresa-dh.vercel.app/projectos/</loc>
   </url>
 </urlset>
