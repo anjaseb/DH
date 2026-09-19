@@ -354,6 +354,7 @@ header {
   font-family: 'JetBrains Mono', monospace;
   font-size: 11.5px;
   color: white;
+   margin-inline-start: 15%
 }
 
 .hero-specs b {
