@@ -3,27 +3,27 @@ import { SUPABASE_URL, SUPABASE_KEY } from './supabase-config.js';
 
 const FALLBACK_PROJECTS = [
   { key: 'construcao', tag: 'INSTALAÇÕES', title: 'instalações', images: [
-    { src: 'assets/img/projectos/rede.jpg', caption: 'Instalações eléctricas e de redes' },
-    { src: 'assets/img/projectos/instalacao.jpg', caption: 'Instalação e manutenção de ar condicionado' },
+    { src: 'assets/img/projectos/rede.webp', caption: 'Instalações eléctricas e de redes' },
+    { src: 'assets/img/projectos/instalacao.webp', caption: 'Instalação e manutenção de ar condicionado' },
   ]},
   { key: 'tecnologia', tag: 'TECNOLOGIA', title: 'Software e sistemas', images: [
-    { src: 'assets/img/projectos/informatica.jpg', caption: 'Soluções de informática no terreno' },
+    { src: 'assets/img/projectos/informatica.webp', caption: 'Soluções de informática no terreno' },
   ]},
   { key: 'arquitectura', tag: 'ARQUITECTURA', title: 'Projectos civis', images: [
-    { src: 'assets/img/projectos/arq.jpg', caption: 'Arqutectua civil' },
+    { src: 'assets/img/projectos/arq.webp', caption: 'Arqutectua civil' },
   ] },
   { key: 'eventos', tag: 'EVENTOS', title: 'Cobertura de eventos', images: [
-    { src: 'assets/img/projectos/evento.jpg', caption: 'Eventos' },
+    { src: 'assets/img/projectos/evento.webp', caption: 'Eventos' },
   ] },
   { key: 'limpeza', tag: 'LIMPEZA', title: 'Manutenção de espaços', images: [
-    { src: 'assets/img/projectos/limpeza.jpg', caption: 'Equipa de limpeza geral em acção' },
+    { src: 'assets/img/projectos/limpeza.webp', caption: 'Equipa de limpeza geral em acção' },
   ]},
   { key: 'seguranca', tag: 'SEGURANÇA', title: 'Segurança institucional', images: [
-    { src: 'assets/img/projectos/seguranca.jpg', caption: 'Equipa de segurança institucional' },
+    { src: 'assets/img/projectos/seguranca.webp', caption: 'Equipa de segurança institucional' },
   ]},
 ];
 
-const FALLBACK_IMG = 'assets/img/bg/team-duotone.jpg';
+const FALLBACK_IMG = 'assets/img/projectos/seguranca.webp';
 
 let PROJECTS = FALLBACK_PROJECTS;
 

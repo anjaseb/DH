@@ -163,7 +163,7 @@ form.onsubmit = async (e) => {
         selectedBox.classList.add('hidden');
         showMsg('ok', 'Candidatura submetida com sucesso. Entraremos em contacto se o seu perfil for seleccionado.');
     } catch (err) {
-        showMsg('error', err.message || 'Não foi possível submeter a candidatura. Tente novamente.');
+        showMsg('error', (console.error(err),null) || 'Não foi possível submeter a candidatura. Tente novamente.');
     } finally {
         submitBtn.disabled = false;
     }

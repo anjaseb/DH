@@ -243,7 +243,7 @@ header {
   background-color: var(--paper);
   background-image:
     linear-gradient(90deg, var(--paper) 0%, var(--paper) 34%, rgba(246, 242, 233, .72) 52%, rgba(246, 242, 233, .18) 78%),
-    url('../img/bg/team-duotone.jpg');
+    url('../img/projectos/seguranca.webp');
   background-repeat: no-repeat, no-repeat;
   background-position: left top, right top;
   background-size: 100% 100%, auto 112%;
@@ -538,7 +538,7 @@ header {
   background-color: var(--panel);
   background-image:
     linear-gradient(90deg, var(--panel) 0%, var(--panel) 42%, rgba(238, 229, 210, .65) 62%, rgba(238, 229, 210, .2) 100%),
-    url('../img/bg/team-duotone.jpg');
+    url('../img/projectos/seguranca.webp');
   background-repeat: no-repeat, no-repeat;
   background-position: left top, right center;
   background-size: 100% 100%, auto 145%;
@@ -1202,7 +1202,7 @@ tr:last-child td {
     padding: 36px 0 48px;
     background-image:
       linear-gradient(180deg, var(--paper) 55%, rgba(246, 242, 233, .75) 78%, rgba(246, 242, 233, .35) 100%),
-      url('../img/bg/team-duotone.jpg');
+      url('../img/projectos/seguranca.webp');
     background-repeat: no-repeat, no-repeat;
     background-position: left top, center bottom;
     background-size: 100% 100%, 100% auto;
@@ -1211,7 +1211,7 @@ tr:last-child td {
   .pagehead {
     background-image:
       linear-gradient(180deg, var(--panel) 55%, rgba(238, 229, 210, .78) 80%, rgba(238, 229, 210, .4) 100%),
-      url('../img/bg/team-duotone.jpg');
+      url('../img/projectos/seguranca.webp');
     background-repeat: no-repeat, no-repeat;
     background-position: left top, center bottom;
     background-size: 100% 100%, 100% auto;

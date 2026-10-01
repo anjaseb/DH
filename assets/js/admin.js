@@ -39,7 +39,7 @@ async function loadEmployees() {
   const { data, error } = await supabase.from('profiles')
     .select('id,full_name,email,department,role,active')
     .order('full_name');
-  if (error) { msg.textContent = error.message; return; }
+  if (error) { msg.textContent = (console.error(error),'Não foi possível concluir a operação. Tente novamente.'); return; }
   rows.innerHTML = '';
   data.forEach(x => {
     const tr = document.createElement('tr');
@@ -63,11 +63,11 @@ async function loadEmployees() {
       const department = tr.querySelector('[data-field="department"]').value.trim();
       const role = tr.querySelector('[data-field="role"]').value;
       const { error } = await supabase.from('profiles').update({ full_name, department, role }).eq('id', x.id);
-      if (error) alert(error.message); else { msg.textContent = 'Dados actualizados.'; loadEmployees(); }
+      if (error) alert((console.error(error),'Não foi possível concluir a operação. Tente novamente.')); else { msg.textContent = 'Dados actualizados.'; loadEmployees(); }
     };
     tr.querySelector('[data-action="toggle"]').onclick = async () => {
       const { error } = await supabase.from('profiles').update({ active: !x.active }).eq('id', x.id);
-      if (error) alert(error.message); else loadEmployees();
+      if (error) alert((console.error(error),'Não foi possível concluir a operação. Tente novamente.')); else loadEmployees();
     };
     rows.appendChild(tr);
   });
@@ -79,7 +79,7 @@ async function loadEmployees() {
 async function loadAreas() {
   const wrap = $('#areas');
   const { data: areas, error } = await supabase.from('project_areas').select('*').order('sort_order');
-  if (error) { wrap.innerHTML = '<div class="notice error">' + error.message + '</div>'; return; }
+  if (error) { wrap.innerHTML = '<div class="notice error">' + (console.error(error),'Não foi possível concluir a operação. Tente novamente.') + '</div>'; return; }
   const { data: images } = await supabase.from('project_images').select('*').order('sort_order');
 
   wrap.innerHTML = '';
@@ -127,12 +127,12 @@ async function loadAreas() {
       const ext = file.name.split('.').pop();
       const path = `${area.key}/${Date.now()}.${ext}`;
       const { error: upErr } = await supabase.storage.from('projectos').upload(path, file);
-      if (upErr) { status.className = 'notice error'; status.textContent = upErr.message; return; }
+      if (upErr) { status.className = 'notice error'; status.textContent = (console.error(upErr),'Não foi possível concluir a operação. Tente novamente.'); return; }
       const { data: pub } = supabase.storage.from('projectos').getPublicUrl(path);
       const { error: insErr } = await supabase.from('project_images').insert({
         area_key: area.key, url: pub.publicUrl, caption: captionInput.value.trim() || null
       });
-      if (insErr) { status.className = 'notice error'; status.textContent = insErr.message; return; }
+      if (insErr) { status.className = 'notice error'; status.textContent = (console.error(insErr),'Não foi possível concluir a operação. Tente novamente.'); return; }
       status.className = 'notice ok'; status.textContent = 'Foto enviada.';
       fileInput.value = ''; captionInput.value = '';
       loadAreas();
@@ -149,7 +149,7 @@ async function loadVagas() {
   const wrap = $('#vagas-list');
   if (!wrap) return;
   const { data, error } = await supabase.from('vagas').select('*').order('sort_order');
-  if (error) { wrap.innerHTML = '<div class="notice error">' + error.message + '</div>'; return; }
+  if (error) { wrap.innerHTML = '<div class="notice error">' + (console.error(error),'Não foi possível concluir a operação. Tente novamente.') + '</div>'; return; }
 
   wrap.innerHTML = '';
   if (!data.length) { wrap.innerHTML = '<p class="notice">Ainda sem vagas criadas. Use "+ Nova vaga".</p>'; }
@@ -192,7 +192,7 @@ async function loadVagas() {
       if (!payload.title) { alert('Indique o título da vaga.'); return; }
       const { error } = await supabase.from('vagas').update(payload).eq('id', v.id);
       status.style.display = 'block';
-      if (error) { status.className = 'notice error'; status.textContent = error.message; }
+      if (error) { status.className = 'notice error'; status.textContent = (console.error(error),'Não foi possível concluir a operação. Tente novamente.'); }
       else {
         status.className = 'notice ok';
         status.textContent = 'Vaga actualizada.';
@@ -203,7 +203,7 @@ async function loadVagas() {
     row.querySelector('[data-action="delete"]').onclick = async () => {
       if (!confirm('Apagar esta vaga e todas as candidaturas associadas?')) return;
       const { error } = await supabase.from('vagas').delete().eq('id', v.id);
-      if (error) alert(error.message); else { loadVagas(); loadCandidaturas(); }
+      if (error) alert((console.error(error),'Não foi possível concluir a operação. Tente novamente.')); else { loadVagas(); loadCandidaturas(); }
     };
 
     wrap.appendChild(row);
@@ -212,7 +212,7 @@ async function loadVagas() {
 
 $('#new-vaga')?.addEventListener('click', async () => {
   const { error } = await supabase.from('vagas').insert({ title: 'Nova vaga', status: 'fechada' });
-  if (error) alert(error.message); else loadVagas();
+  if (error) alert((console.error(error),'Não foi possível concluir a operação. Tente novamente.')); else loadVagas();
 });
 
 const STATUS_LABELS = { pendente: 'Pendente', em_analise: 'Em análise', aprovado: 'Aprovado', rejeitado: 'Rejeitado' };
@@ -296,7 +296,7 @@ async function loadCandidaturas() {
   let q = supabase.from('candidaturas').select('*, vagas(title)').order('created_at', { ascending: false });
   if (filter.value) q = q.eq('vaga_id', filter.value);
   const { data, error } = await q;
-  if (error) { wrap.innerHTML = '<div class="notice error">' + error.message + '</div>'; return; }
+  if (error) { wrap.innerHTML = '<div class="notice error">' + (console.error(error),'Não foi possível concluir a operação. Tente novamente.') + '</div>'; return; }
 
   wrap.innerHTML = '';
   lastCandidaturas = [];
@@ -337,7 +337,7 @@ async function loadCandidaturas() {
 
     card.querySelector('[data-field="status"]').onchange = async (e) => {
       const { error } = await supabase.from('candidaturas').update({ status: e.target.value }).eq('id', c.id);
-      if (error) alert(error.message);
+      if (error) alert((console.error(error),'Não foi possível concluir a operação. Tente novamente.'));
     };
 
     card.querySelector('[data-action="whatsapp"]').onclick = () => {
@@ -350,7 +350,7 @@ async function loadCandidaturas() {
       if (!confirm('Apagar esta candidatura e os ficheiros associados?')) return;
       await supabase.storage.from('candidaturas').remove([c.cv_path, c.bi_path, c.photo_path]);
       const { error } = await supabase.from('candidaturas').delete().eq('id', c.id);
-      if (error) alert(error.message); else loadCandidaturas();
+      if (error) alert((console.error(error),'Não foi possível concluir a operação. Tente novamente.')); else loadCandidaturas();
     };
 
     wrap.appendChild(card);
