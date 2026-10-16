@@ -18,6 +18,16 @@ const MAX_IMG = 5 * 1024 * 1024;  // 5MB — BI / fotografia
 
 let vagas = [];
 
+// Código de candidatura: segredo aleatório (sem 0/O/1/I/L) que o candidato guarda
+// para consultar o estado mais tarde. Ex.: DH-7KQ4M-X92TB
+const CODE_ALPHABET = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+function gerarCodigo() {
+    const bytes = new Uint8Array(10);
+    crypto.getRandomValues(bytes);
+    const c = Array.from(bytes, b => CODE_ALPHABET[b % CODE_ALPHABET.length]).join('');
+    return `DH-${c.slice(0, 5)}-${c.slice(5)}`;
+}
+
 async function loadVagas() {
     const { data, error } = await supabase.from('vagas')
         .select('*')
@@ -102,6 +112,21 @@ function showMsg(kind, text) {
     candMsg.classList.remove('hidden');
 }
 
+function showSuccess(codigo) {
+    candMsg.className = 'notice ok';
+    candMsg.textContent = '';
+    candMsg.append('Candidatura submetida com sucesso. Guarde o seu código de candidatura: ');
+    const strong = document.createElement('strong');
+    strong.textContent = codigo;
+    candMsg.append(strong);
+    candMsg.append('. Vai precisar dele, juntamente com o telefone, para ');
+    const a = document.createElement('a');
+    a.href = '/consultar-candidatura';
+    a.textContent = 'consultar o estado da candidatura';
+    candMsg.append(a, '.');
+    candMsg.classList.remove('hidden');
+}
+
 function extOf(file) {
     const parts = file.name.split('.');
     return parts.length > 1 ? parts.pop().toLowerCase() : 'dat';
@@ -148,20 +173,28 @@ form.onsubmit = async (e) => {
             uploadFile(photoFile, folder, 'foto'),
         ]);
 
-        const { error } = await supabase.from('candidaturas').insert({
-            vaga_id: vagaId,
-            full_name: fullName,
-            phone,
-            email: (f.get('email') || '').trim() || null,
-            cv_path,
-            bi_path,
-            photo_path,
-        });
-        if (error) throw error;
+        let codigo = '';
+        let insertError = null;
+        for (let tentativa = 0; tentativa < 3; tentativa++) {
+            codigo = gerarCodigo();
+            const { error } = await supabase.from('candidaturas').insert({
+                vaga_id: vagaId,
+                full_name: fullName,
+                phone,
+                email: (f.get('email') || '').trim() || null,
+                cv_path,
+                bi_path,
+                photo_path,
+                codigo,
+            });
+            insertError = error;
+            if (!error || error.code !== '23505') break; // só repete se o código já existia
+        }
+        if (insertError) throw insertError;
 
         form.reset();
         selectedBox.classList.add('hidden');
-        showMsg('ok', 'Candidatura submetida com sucesso. Entraremos em contacto se o seu perfil for seleccionado.');
+        showSuccess(codigo);
     } catch (err) {
         showMsg('error', (console.error(err),null) || 'Não foi possível submeter a candidatura. Tente novamente.');
     } finally {

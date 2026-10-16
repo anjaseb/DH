@@ -37,6 +37,12 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://empresa-dh.vercel.app/consultar-candidatura</loc>
+    <lastmod>2026-10-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
     <loc>https://empresa-dh.vercel.app/privacidade</loc>
     <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>

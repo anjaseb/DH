@@ -2,6 +2,8 @@ import {supabase} from './supabase.js';
 import {requireUser, profile} from './auth.js';
 
 const $ = s => document.querySelector(s);
+// escapa texto vindo da base de dados antes de o pôr em innerHTML (evita HTML injectado por candidatos/utilizadores)
+const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const msg = $('#msg');
 let me;
 
@@ -44,9 +46,9 @@ async function loadEmployees() {
   data.forEach(x => {
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td><input value="${x.full_name || ''}" data-field="full_name"></td>
-      <td>${x.email || ''}</td>
-      <td><input value="${x.department || ''}" data-field="department"></td>
+      <td><input value="${esc(x.full_name)}" data-field="full_name"></td>
+      <td>${esc(x.email)}</td>
+      <td><input value="${esc(x.department)}" data-field="department"></td>
       <td>
         <select data-field="role">
           <option value="employee" ${x.role === 'employee' ? 'selected' : ''}>Funcionário</option>
@@ -88,8 +90,8 @@ async function loadAreas() {
     block.className = 'area-block';
     const areaImages = (images || []).filter(im => im.area_key === area.key);
     block.innerHTML = `
-      <span class="tag">${area.tag}</span>
-      <h3>${area.title}</h3>
+      <span class="tag">${esc(area.tag)}</span>
+      <h3>${esc(area.title)}</h3>
       <div class="photo-grid" data-grid></div>
       <div class="upload-row">
         <input type="file" accept="image/png,image/jpeg,image/webp" data-file>
@@ -104,7 +106,7 @@ async function loadAreas() {
       areaImages.forEach(im => {
         const item = document.createElement('div');
         item.className = 'photo-item';
-        item.innerHTML = `<img src="${im.url}" alt="${im.caption || area.title}"><button title="Apagar">×</button>`;
+        item.innerHTML = `<img src="${esc(im.url)}" alt="${esc(im.caption || area.title)}"><button title="Apagar">×</button>`;
         item.querySelector('button').onclick = async () => {
           if (!confirm('Apagar esta foto?')) return;
           await supabase.from('project_images').delete().eq('id', im.id);
@@ -159,7 +161,7 @@ async function loadVagas() {
     row.className = 'vaga-row';
     row.innerHTML = `
       <div class="vaga-row-head">
-        <input value="${v.title || ''}" data-field="title" placeholder="Título da vaga">
+        <input value="${esc(v.title)}" data-field="title" placeholder="Título da vaga">
         <select data-field="status">
           <option value="aberta" ${v.status === 'aberta' ? 'selected' : ''}>Aberta</option>
           <option value="fechada" ${v.status === 'fechada' ? 'selected' : ''}>Fechada</option>
@@ -167,13 +169,13 @@ async function loadVagas() {
         <button class="btn alt" data-action="delete">Apagar</button>
       </div>
       <div class="vaga-row-grid">
-        <input value="${v.department || ''}" data-field="department" placeholder="Departamento / área">
-        <input value="${v.location || ''}" data-field="location" placeholder="Local (ex: Namibe)">
-        <input value="${v.type || ''}" data-field="type" placeholder="Tipo (Efectivo, Estágio...)">
-        <input type="date" value="${v.deadline || ''}" data-field="deadline">
+        <input value="${esc(v.department)}" data-field="department" placeholder="Departamento / área">
+        <input value="${esc(v.location)}" data-field="location" placeholder="Local (ex: Namibe)">
+        <input value="${esc(v.type)}" data-field="type" placeholder="Tipo (Efectivo, Estágio...)">
+        <input type="date" value="${esc(v.deadline)}" data-field="deadline">
       </div>
-      <textarea data-field="description" rows="3" placeholder="Descrição da vaga">${v.description || ''}</textarea>
-      <textarea data-field="requirements" rows="3" placeholder="Requisitos">${v.requirements || ''}</textarea>
+      <textarea data-field="description" rows="3" placeholder="Descrição da vaga">${esc(v.description)}</textarea>
+      <textarea data-field="requirements" rows="3" placeholder="Requisitos">${esc(v.requirements)}</textarea>
       <button class="btn" data-action="save">Guardar vaga</button>
       <p class="notice" data-status style="display:none;margin-top:10px"></p>`;
 
@@ -234,6 +236,7 @@ function candidatoMensagem(c, cvUrl, biUrl) {
     `Nome: ${c.full_name}`,
     `Telefone: ${c.phone || '—'}`,
     c.email ? `Email: ${c.email}` : null,
+    c.codigo ? `Código: ${c.codigo}` : null,
     `Estado: ${STATUS_LABELS[c.status] || c.status}`,
     `Data: ${new Date(c.created_at).toLocaleDateString('pt-AO')}`,
     '',
@@ -317,16 +320,17 @@ async function loadCandidaturas() {
     card.className = 'cand-card';
     card.innerHTML = `
       <div class="cand-info">
-        <img class="cand-photo" src="${photoUrl}" alt="${c.full_name}">
+        <img class="cand-photo" src="${esc(photoUrl)}" alt="${esc(c.full_name)}">
         <div>
-          <b>${c.full_name}</b>
-          <small>${c.vagas?.title || 'Vaga removida'} · ${new Date(c.created_at).toLocaleDateString('pt-AO')}</small>
-          <small>${c.phone || ''}${c.email ? ' · ' + c.email : ''}</small>
+          <b>${esc(c.full_name)}</b>
+          <small>${esc(c.vagas?.title || 'Vaga removida')} · ${new Date(c.created_at).toLocaleDateString('pt-AO')}</small>
+          <small>${esc(c.phone)}${c.email ? ' · ' + esc(c.email) : ''}</small>
+          <small>Código: <b>${esc(c.codigo || '—')}</b></small>
         </div>
       </div>
       <div class="cand-actions">
-        <a class="btn alt" href="${cvUrl || '#'}" target="_blank" rel="noopener">CV</a>
-        <a class="btn alt" href="${biUrl || '#'}" target="_blank" rel="noopener">BI</a>
+        <a class="btn alt" href="${esc(cvUrl || '#')}" target="_blank" rel="noopener">CV</a>
+        <a class="btn alt" href="${esc(biUrl || '#')}" target="_blank" rel="noopener">BI</a>
         <button type="button" class="btn alt" data-action="whatsapp"><i class="fab fa-whatsapp"></i> Enviar</button>
         <select data-field="status">
           ${Object.entries(STATUS_LABELS).map(([val, label]) =>
