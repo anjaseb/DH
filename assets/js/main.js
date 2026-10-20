@@ -109,3 +109,13 @@ const b=document.querySelector('.menu'),n=document.querySelector('.navlinks');b?
     countIO.observe(el);
   });
 })();
+
+/* mapa do hero: o sinal a piscar some quando a pessoa clica/mexe no mapa */
+(function () {
+  var box = document.querySelector('.hero-map');
+  if (!box) return;
+  window.addEventListener('blur', function () {
+    var a = document.activeElement;
+    if (a && a.tagName === 'IFRAME' && box.contains(a)) box.classList.add('is-touched');
+  });
+})();
