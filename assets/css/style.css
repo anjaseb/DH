@@ -976,14 +976,11 @@ footer {
   margin-bottom: 10px
 }
 
-.foot a,
-.foot span {
-  display: block;
-  margin: 8px 0;
-  color: #c3d6d8;
-  font-size: 14.5px
+.foot a:has(> i.fab) {
+  display: inline-block;
+  margin: 8px 14px 8px 0;
+  font-size: 22px;
 }
-
 .foot a:hover {
   color: var(--gold-tint)
 }
